@@ -1,0 +1,36 @@
+#include<fstream>
+#include<cstring>
+#include<bitset>
+using namespace std;
+ifstream fin("advent.in");
+ofstream fout("advent.out");
+char s[1000];
+int duble, triple,nr2,nr3,n;
+int main(){
+    while(fin>>s){
+        n=strlen(s);
+        int f[1000]={0};
+        nr2=nr3=0;
+        for(int i=0;i<n;i++){
+            f[s[i]-'a']++;
+            if(f[s[i]-'a']==2){
+                nr2++;
+            }
+            if(f[s[i]-'a']==3){
+                nr3++;
+                nr2--;
+            }
+            if(f[s[i]-'a']==4){
+                nr3--;
+            }
+        }
+        if(nr2>0){
+            duble++;
+        }
+        if(nr3>0){
+            triple++;
+        }
+    }
+    fout<<duble*triple;
+    return 0;
+}
