@@ -1,0 +1,12 @@
+#include<fstream>
+using namespace std;
+ifstream fin("advent.in");
+ofstream fout("advent.out");
+long long x,y;
+int main(){
+    y=0;
+    while(fin>>x)
+        y+=x;
+    fout<<y;
+    return 0;
+}
