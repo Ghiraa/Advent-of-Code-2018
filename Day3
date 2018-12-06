@@ -1,0 +1,76 @@
+#include<fstream>
+#include<cstring>
+#define X first.first
+#define Y first.second
+#define Z second.first
+#define W second.second
+using namespace std;
+ifstream fin("advent.in");
+ofstream fout("advent.out");
+int a[10001][10001];
+pair < pair<int,int>, pair<int,int> > p[10001];
+char s[55];
+int n,maxim1,maxim2;
+int main(){
+    while( fin.get(s,50) ){
+        n++;
+        int i=0;
+        while(s[i]!='@')
+            i++;
+        i+=2;
+        int X1=0;
+        int Y1=0;
+        int X2=0;
+        int Y2=0;
+        while(s[i]>='0'&&s[i]<='9'){
+            Y1=Y1*10+s[i]-'0';
+            i++;
+        }
+        i++;
+        while(s[i]>='0'&&s[i]<='9'){
+            X1=X1*10+s[i]-'0';
+            i++;
+        }
+        i+=2;
+        while(s[i]>='0'&&s[i]<='9'){
+            Y2=Y2*10+s[i]-'0';
+            i++;
+        }
+        i++;
+        while(s[i]>='0'&&s[i]<='9'){
+            X2=X2*10+s[i]-'0';
+            i++;
+        }
+        X2=X2+X1-1;
+        Y2=Y2+Y1-1;
+        p[n].X=X1;
+        p[n].Y=X2;
+        p[n].Z=Y1;
+        p[n].W=Y2;
+        if(maxim1<=X2)
+            maxim1=X2;
+        if(maxim2<=Y2)
+            maxim2=Y2;
+        for(int i=X1;i<=X2;i++){
+            for(int j=Y1;j<=Y2;j++){
+                a[i][j]++;
+            }
+        }
+        fin.get();
+
+    }
+    int nr=0;
+    for(int N=1;N<=n;N++){
+        nr=0;
+        for(int i=p[N].X;i<=p[N].Y;i++){
+            for(int j=p[N].Z;j<=p[N].W;j++){
+                if(a[i][j]>1||a[i][j]==0)
+                    nr++;
+            }
+        }
+        if(nr==0){
+            fout<<N;
+        }
+    }
+    return 0;
+}
