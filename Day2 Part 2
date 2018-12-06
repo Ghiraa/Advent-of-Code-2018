@@ -1,0 +1,30 @@
+#include<fstream>
+#include<cstring>
+using namespace std;
+ifstream fin("advent.in");
+ofstream fout("advent.out");
+char a[255][30],c;
+int n,nr;
+int main(){
+    for(int i=1;i<=250;i++)
+        fin>>a[i];
+    n=strlen(a[1]);
+    for(int i=1;i<250;i++){
+        for(int j=i+1;j<=250;j++){
+            nr=0;
+            for(int k=0;k<n;k++){
+                if(a[i][k]!=a[j][k]){
+                    nr++;
+                }
+            }
+            if(nr==1){
+                for(int k=0;k<n;k++){
+                    if(a[i][k]==a[j][k])
+                        fout<<a[i][k];
+                }
+                return 0;
+            }
+        }
+    }
+    return 0;
+}
